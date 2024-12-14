@@ -20,12 +20,19 @@ func getRoot(w http.ResponseWriter, r *http.Request) {
 func getHomework(w http.ResponseWriter, r *http.Request) {
 
 	if r.Method == "GET" {
-		homeword := scraper.Scrape()
+		homeworkData := scraper.ScrapeF()
+
+		fmt.Println(homeworkData)
 
 		w.Header().Set("Content-Type", "application/json")
+		w.Header().Set("Access-Control-Allow-Origin", "*")
 
-		if err := json.NewEncoder(w).Encode(homeword); err != nil {
-			http.Error(w, "Error encoding JSON", http.StatusInternalServerError)
+		w.WriteHeader(http.StatusOK)
+
+		err := json.NewEncoder(w).Encode(homeworkData)
+		if err != nil {
+			http.Error(w, err.Error(), http.StatusInternalServerError)
+			return
 		}
 	}
 
