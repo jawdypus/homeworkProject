@@ -32,11 +32,11 @@ func Scrape() map[string]ClassDetails {
 	var presence [][]string
 
 	// set up chromedp
-	browserPath := "C:\\Users\\raven\\AppData\\Local\\Thorium\\Application\\thorium.exe"
+	// browserPath := "C:\\Users\\raven\\AppData\\Local\\Thorium\\Application\\thorium.exe"
 
 	opts := append(chromedp.DefaultExecAllocatorOptions[:],
 		chromedp.Flag("headless", true),
-		chromedp.ExecPath(browserPath),
+		//chromedp.ExecPath(browserPath),
 	)
 
 	allocatorCtx, cancel := chromedp.NewExecAllocator(context.Background(), opts...)
@@ -85,6 +85,7 @@ func Scrape() map[string]ClassDetails {
 }
 
 func ScrapeF() map[string]ClassDetails {
+
 	homework := make(map[string]ClassDetails)
 
 	homework["Геймдизайн"] = ClassDetails{
@@ -92,6 +93,14 @@ func ScrapeF() map[string]ClassDetails {
 		Presence: map[string]bool{
 			"Юра":  true,
 			"Іван": false,
+		},
+	}
+
+	homework["КГ"] = ClassDetails{
+		ClassTheme: "Соц мережі",
+		Presence: map[string]bool{
+			"Міша": true,
+			"Іра":  true,
 		},
 	}
 
