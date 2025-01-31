@@ -35,7 +35,7 @@ func Scrape() map[string]ClassDetails {
 	// browserPath := "C:\\Users\\raven\\AppData\\Local\\Thorium\\Application\\thorium.exe"
 
 	opts := append(chromedp.DefaultExecAllocatorOptions[:],
-		chromedp.Flag("headless", true),
+		chromedp.Flag("headless", false),
 		//chromedp.ExecPath(browserPath),
 	)
 

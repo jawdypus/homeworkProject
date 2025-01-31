@@ -20,9 +20,7 @@ func getRoot(w http.ResponseWriter, r *http.Request) {
 func getHomework(w http.ResponseWriter, r *http.Request) {
 
 	if r.Method == "GET" {
-		homeworkData := scraper.ScrapeF()
-
-		fmt.Println(homeworkData)
+		homeworkData := scraper.Scrape()
 
 		w.Header().Set("Content-Type", "application/json")
 		w.Header().Set("Access-Control-Allow-Origin", "*")
