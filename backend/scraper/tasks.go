@@ -50,9 +50,9 @@ func getLastClassInfo(groupId string, groupName *string, classTheme *string, pre
 
 		chromedp.WaitVisible(groupNameX, chromedp.BySearch),
 
-		chromedp.Text(groupNameX, groupName, chromedp.BySearch),
-
 		chromedp.WaitVisible(".lessons-table", chromedp.ByQuery),
+
+		chromedp.Text(groupNameX, groupName, chromedp.BySearch),
 
 		chromedp.Text(classThemeX, classTheme, chromedp.BySearch),
 
@@ -64,5 +64,19 @@ func getLastClassInfo(groupId string, groupName *string, classTheme *string, pre
   if (list[0] !== undefined)
    return list;
 });`, &presence),
+	}
+}
+
+func getLastClassTasks(groupId string, classTasks *[]string) chromedp.Tasks {
+	baseGroupUrl := "https://lms.logikaschool.com/group/view/"
+	lastClassPostfix := "#group-closest-lesson"
+	groupUrl := fmt.Sprintf("%s%s%s", baseGroupUrl, groupId, lastClassPostfix)
+
+	return chromedp.Tasks{
+		chromedp.Navigate(groupUrl),
+
+		chromedp.WaitVisible(".lessons-table", chromedp.ByQuery),
+
+		chromedp.Evaluate(`Array.from(document.querySelectorAll(".lessons-table__tr:first-child .lessons-table__levels-td .lessons-table__td-inner .lessons-table__td-tracks .lessons-table__track .lessons-table__task .lessons-table__task-progress .lessons-table__track-name")).map(div => div.innerText.trim())`, classTasks),
 	}
 }

@@ -11,6 +11,7 @@ import (
 type ClassDetails struct {
 	ClassTheme string          `json:"class_theme"`
 	Presence   map[string]bool `json:"presence"`
+	Tasks      []string        `json:"tasks"`
 }
 
 func Scrape() map[string]ClassDetails {
@@ -30,12 +31,13 @@ func Scrape() map[string]ClassDetails {
 	var groupName string
 	var classTheme string
 	var presence [][]string
+	var classTasks []string
 
 	// set up chromedp
 	// browserPath := "C:\\Users\\raven\\AppData\\Local\\Thorium\\Application\\thorium.exe"
 
 	opts := append(chromedp.DefaultExecAllocatorOptions[:],
-		chromedp.Flag("headless", false),
+		chromedp.Flag("headless", true),
 		//chromedp.ExecPath(browserPath),
 	)
 
@@ -58,8 +60,19 @@ func Scrape() map[string]ClassDetails {
 
 	// get data from groups
 	for _, group := range groups {
+
+		groupName = ""
+		classTheme = ""
+		presence = [][]string{}
+		classTasks = []string{}
+
 		tasks = getLastClassInfo(group, &groupName, &classTheme, &presence)
 
+		if err := chromedp.Run(ctx, tasks); err != nil {
+			log.Fatalf("Failed to execute chromedp tasks: %v", err)
+		}
+
+		tasks = getLastClassTasks(group, &classTasks)
 		if err := chromedp.Run(ctx, tasks); err != nil {
 			log.Fatalf("Failed to execute chromedp tasks: %v", err)
 		}
@@ -77,7 +90,9 @@ func Scrape() map[string]ClassDetails {
 		homework[groupName] = ClassDetails{
 			ClassTheme: classTheme,
 			Presence:   presenceMap,
+			Tasks:      classTasks,
 		}
+
 	}
 
 	return homework
@@ -88,20 +103,22 @@ func ScrapeF() map[string]ClassDetails {
 
 	homework := make(map[string]ClassDetails)
 
-	homework["Геймдизайн"] = ClassDetails{
+	homework["Геймдизайн_Кременець_СБ_12:00"] = ClassDetails{
 		ClassTheme: "Відкритий урок",
 		Presence: map[string]bool{
 			"Юра":  true,
 			"Іван": false,
 		},
+		Tasks: []string{"Task1 Game ", "Task2 Game"},
 	}
 
-	homework["КГ"] = ClassDetails{
+	homework["КГ_Кременець_НД_12.00"] = ClassDetails{
 		ClassTheme: "Соц мережі",
 		Presence: map[string]bool{
 			"Міша": true,
 			"Іра":  true,
 		},
+		Tasks: []string{"Task1 PC", "Task2 PC"},
 	}
 
 	return homework
