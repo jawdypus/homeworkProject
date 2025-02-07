@@ -11,7 +11,6 @@ func GetHomework(w http.ResponseWriter, r *http.Request) {
 	homeworkData := scraper.Scrape()
 
 	w.Header().Set("Content-Type", "application/json")
-	w.Header().Set("Access-Control-Allow-Origin", "*")
 
 	w.WriteHeader(http.StatusOK)
 
