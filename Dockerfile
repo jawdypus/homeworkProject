@@ -39,6 +39,9 @@ WORKDIR /app
 # Copy the backend executable and frontend assets
 COPY --from=backend-builder /app .
 
+# Set environment variables
+ENV STATIC_FILES_PATH=/app/frontend
+
 EXPOSE 8080
 
 # Command to run the backend

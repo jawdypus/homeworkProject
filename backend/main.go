@@ -20,9 +20,14 @@ func main() {
 		}
 	}
 
+	staticFilesPath := os.Getenv("STATIC_FILES_PATH")
+	if staticFilesPath == "" {
+		staticFilesPath = "../frontend/dist" // Default to local path
+	}
+
 	router := routes.SetupRouter()
 
-	fs := http.FileServer(http.Dir("../frontend/dist"))
+	fs := http.FileServer(http.Dir(staticFilesPath))
 	router.PathPrefix("/").Handler(fs)
 
 	log.Fatal(http.ListenAndServe(":8080", router))
