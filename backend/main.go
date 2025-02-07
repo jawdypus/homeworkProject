@@ -21,6 +21,10 @@ func main() {
 	}
 
 	router := routes.SetupRouter()
+
+	fs := http.FileServer(http.Dir("../frontend/build"))
+	router.PathPrefix("/").Handler(fs)
+
 	log.Fatal(http.ListenAndServe(":8080", router))
 
 }
