@@ -11,7 +11,7 @@ export default {
     async fetchHomework() {
       this.$emit('loading', true);
       try {
-        const response = await fetch('http://127.0.0.1:8080/get-homework');
+        const response = await fetch('http://127.0.0.1:8080/api/homework');
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }

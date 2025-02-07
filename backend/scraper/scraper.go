@@ -20,8 +20,8 @@ func Scrape() map[string]ClassDetails {
 	homework := make(map[string]ClassDetails)
 
 	// get environmental variables
-	loginUrl := os.Getenv("LOGIN_URL")
-	dataUrl := os.Getenv("DATA_URL")
+	loginUrl := "https://lms.logikaschool.com/auth/v3/login"
+	dataUrl := "https://lms.logikaschool.com/group?GroupSearch%5Bstatus%5D%5B0%5D=active&GroupSearch%5Bstatus%5D%5B1%5D=recruiting&presetType=all"
 	username := os.Getenv("USER")
 	password := os.Getenv("PASSWORD")
 
