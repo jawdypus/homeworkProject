@@ -346,6 +346,11 @@
   resolved "https://registry.npmjs.org/@tailwindcss/oxide-linux-x64-gnu/-/oxide-linux-x64-gnu-4.0.0.tgz"
   integrity sha512-hGtRYIUEx377/HlU49+jvVKKwU1MDSKYSMMs0JFO2Wp7LGxk5+0j5+RBk9NFnmp/lbp32yPTgIOO5m1BmDq36A==
 
+"@tailwindcss/oxide-linux-x64-musl@4.0.0":
+  version "4.0.0"
+  resolved "https://registry.npmjs.org/@tailwindcss/oxide-linux-x64-musl/-/oxide-linux-x64-musl-4.0.0.tgz"
+  integrity sha512-7xgQgSAThs0I14VAgmxpJnK6XFSZBxHMGoDXkLyYkEnu+8WRQMbCP93dkCUn2PIv+Q+JulRgc00PJ09uORSLXQ==
+
 "@tailwindcss/oxide@^4.0.0":
   version "4.0.0"
   resolved "https://registry.npmjs.org/@tailwindcss/oxide/-/oxide-4.0.0.tgz"
@@ -885,6 +890,11 @@ lightningcss-linux-x64-gnu@1.29.1:
   version "1.29.1"
   resolved "https://registry.npmjs.org/lightningcss-linux-x64-gnu/-/lightningcss-linux-x64-gnu-1.29.1.tgz"
   integrity sha512-u1S+xdODy/eEtjADqirA774y3jLcm8RPtYztwReEXoZKdzgsHYPl0s5V52Tst+GKzqjebkULT86XMSxejzfISw==
+
+lightningcss-linux-x64-musl@1.29.1:
+  version "1.29.1"
+  resolved "https://registry.npmjs.org/lightningcss-linux-x64-musl/-/lightningcss-linux-x64-musl-1.29.1.tgz"
+  integrity sha512-L0Tx0DtaNUTzXv0lbGCLB/c/qEADanHbu4QdcNOXLIe1i8i22rZRpbT3gpWYsCh9aSL9zFujY/WmEXIatWvXbw==
 
 lightningcss@^1.21.0, lightningcss@^1.29.1:
   version "1.29.1"

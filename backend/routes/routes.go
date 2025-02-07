@@ -14,6 +14,8 @@ func SetupRouter() *mux.Router {
 
 	router.Use(middleware.CORS)
 
+	router.HandleFunc("/api/homework", handlers.GetHomework).Methods("GET")
+
 	staticFilesPath := os.Getenv("STATIC_FILES_PATH")
 	if staticFilesPath == "" {
 		staticFilesPath = "../frontend/dist" // Default to local path
@@ -21,6 +23,6 @@ func SetupRouter() *mux.Router {
 
 	fs := http.FileServer(http.Dir(staticFilesPath))
 	router.PathPrefix("/").Handler(fs)
-	router.HandleFunc("/api/homework", handlers.GetHomework).Methods("GET")
+
 	return router
 }

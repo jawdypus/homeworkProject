@@ -6,16 +6,15 @@
 </template>
 
 <script>
+import axios from '../axiosConfig';
+
 export default {
   methods: {
     async fetchHomework() {
       this.$emit('loading', true);
       try {
-        const response = await fetch('http://127.0.0.1:8080/api/homework');
-        if (!response.ok) {
-          throw new Error('Network response was not ok');
-        }
-        const data = await response.json();
+        const response = await axios.get('/api/homework');
+        const data = response.data;
         this.$emit('homework-fetched', data);
       } catch (error) {
         console.error('There was a problem with the fetch operation:', error);
@@ -25,7 +24,3 @@ export default {
   }
 }
 </script>
-
-<style scoped>
-/* Add any additional styles here */
-</style>
