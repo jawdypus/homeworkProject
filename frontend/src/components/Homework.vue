@@ -129,21 +129,22 @@ export default {
     getMakeupClassText() {
       const groupName = this.selectedTab;
       const parts = groupName.split('_');
-      const dayAbbreviation = parts[2];
+      const dayAbbreviation = parts[2].toUpperCase();
       const time = parts[3];
 
       const dayMap = {
         'ПН': 'понеділок',
         'ВТ': 'вівторок',
-        'СР': 'середа',
+        'СР': 'середу',
         'ЧТ': 'четвер',
-        'ПТ': 'п’ятниця',
-        'СБ': 'субота',
-        'НД': 'неділя'
+        'ПТ': 'п’ятницю',
+        'СБ': 'суботу',
+        'НД': 'неділю'
       };
 
       const day = dayMap[dayAbbreviation] || 'день';
-      const [hours, minutes] = time.split(':').map(Number);
+      const normalizedTime = time.replace('.', ':');
+      const [hours, minutes] = normalizedTime.split(':').map(Number);
       const makeupTime = new Date();
       makeupTime.setHours(hours);
       makeupTime.setMinutes(minutes - 30);
