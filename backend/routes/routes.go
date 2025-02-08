@@ -14,7 +14,7 @@ func SetupRouter() *mux.Router {
 
 	router.Use(middleware.CORS)
 
-	router.HandleFunc("/api/homework", handlers.GetHomework).Methods("GET")
+	router.HandleFunc("/api/homework", handlers.GetHomework).Methods("GET", "OPTIONS")
 
 	staticFilesPath := os.Getenv("STATIC_FILES_PATH")
 	if staticFilesPath == "" {
